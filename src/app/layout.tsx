@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Tabs from "./components/Tabs";
-import Providers from "./Providers";
+import ProvidersTheme from "./ProvidersTheme";
+import { Providers } from "./redux/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +21,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Providers>
-          <Header />
-          <Tabs />
-          <div id="root">{children}</div>
-        </Providers>
+        <ProvidersTheme>
+          <div id="root">
+            <Providers>
+              <Header />
+              <Tabs />
+              {children}
+            </Providers>
+          </div>
+        </ProvidersTheme>
       </body>
     </html>
   );
