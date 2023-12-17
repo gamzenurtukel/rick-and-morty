@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState, lazy } from "react";
 import { usePathname } from "next/navigation";
 import BaseUrl from "../services/BaseUrl";
 import { useAppSelector } from "../redux/hook";
+import Tabs from "../components/Tabs";
 
 const CardItem = lazy(() => import("../components/CardItem"));
 const TableList = lazy(() => import("../components/TableList"));
@@ -52,6 +53,7 @@ const page = () => {
 
   return (
     <Fragment>
+      <Tabs />
       {pathname == "/character" && (
         <div className="flex flex-wrap gap-5 justify-center items-center dark:bg-gray-900 bg-white pt-7">
           {data.length > 0 &&
