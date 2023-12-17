@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import BaseUrl from "../services/BaseUrl";
 import CardItem from "../components/CardItem";
+import TableList from "../components/TableList";
 
 const page = () => {
   const [data, setData] = useState([]);
@@ -35,9 +36,13 @@ const page = () => {
 
   return (
     <Fragment>
-      <div className="flex flex-wrap gap-5 justify-center items-center dark:bg-gray-900 bg-white pt-7">
-        {data.length > 0 && data?.map((item: any) => <CardItem item={item} />)}
-      </div>
+      {pathname == "/character" && (
+        <div className="flex flex-wrap gap-5 justify-center items-center dark:bg-gray-900 bg-white pt-7">
+          {data.length > 0 &&
+            data?.map((item: any) => <CardItem item={item} />)}
+        </div>
+      )}
+      {pathname == "/location" && <TableList data={data} />}
       <nav
         aria-label="Page navigation example"
         className=" flex items-center justify-end gap-5 p-5 pb-10 dark:bg-gray-900 bg-white"
