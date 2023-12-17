@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import Tabs from "./components/Tabs";
 import ProvidersTheme from "./ProvidersTheme";
 import { Providers } from "./redux/providers";
+import { Suspense } from "react";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,9 +29,8 @@ export default function RootLayout({
               <div className="sticky top-0 bg-white z-50 mb-5">
                 <Header />
               </div>
-
               <Tabs />
-              {children}
+              <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
             </Providers>
           </div>
         </ProvidersTheme>
