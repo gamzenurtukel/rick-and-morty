@@ -1,8 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import FilterStatus from "./FilterStatus";
 
-const Tabs: React.FC = () => {
+interface Props {
+  setSelectedStatus: (status: null) => void;
+  selectedStatus: null;
+}
+
+const Tabs: React.FC<Props> = ({ setSelectedStatus, selectedStatus }) => {
   const [activeTab, setActiveTab] = useState("1");
 
   const toggle = (tab: string) => {
@@ -25,7 +31,7 @@ const Tabs: React.FC = () => {
   ];
 
   return (
-    <div className="p-5 bg-transparent flex items-center justify-start">
+    <div className="p-5 bg-transparent flex items-center justify-between">
       <div className="flex items-center gap-7">
         <div className="text-md font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
           <ul className="flex flex-wrap -mb-px">
@@ -47,6 +53,12 @@ const Tabs: React.FC = () => {
             ))}
           </ul>
         </div>
+      </div>
+      <div className="w-[20rem]">
+        <FilterStatus
+          setSelectedStatus={setSelectedStatus}
+          selectedStatus={selectedStatus}
+        />
       </div>
     </div>
   );
