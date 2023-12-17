@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment, useEffect, useState, lazy, use } from "react";
+import React, { Fragment, useEffect, useState, lazy } from "react";
 import { usePathname } from "next/navigation";
 import BaseUrl from "../services/BaseUrl";
 import { useAppSelector } from "../redux/hook";
