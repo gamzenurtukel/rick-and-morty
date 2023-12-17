@@ -54,20 +54,22 @@ const Tabs: React.FC<Props> = ({ setSelectedStatus, selectedStatus }) => {
           </ul>
         </div>
       </div>
-      <div className="w-[30rem] flex items-end">
-        <button
-          type="button"
-          onClick={() => setSelectedStatus(null)}
-          className="inline-flex mr-2 items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Reset Filter
-        </button>
+      {activeTab == "1" && (
+        <div className="w-[30rem] flex items-end">
+          <button
+            type="button"
+            onClick={() => setSelectedStatus(null)}
+            className="inline-flex mr-2 items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Reset Filter
+          </button>
 
-        <FilterStatus
-          setSelectedStatus={setSelectedStatus}
-          selectedStatus={selectedStatus}
-        />
-      </div>
+          <FilterStatus
+            setSelectedStatus={setSelectedStatus}
+            selectedStatus={selectedStatus}
+          />
+        </div>
+      )}
     </div>
   );
 };
