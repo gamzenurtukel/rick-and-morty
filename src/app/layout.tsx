@@ -20,11 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <body className="h-[100vh]  dark:bg-gray-900 ">
         <ProvidersTheme>
           <div id="root">
             <Providers>
-              <Header />
+              <div className="sticky top-0 bg-white z-50 mb-5">
+                <Header />
+              </div>
+
               <Tabs />
               {children}
             </Providers>
