@@ -1,9 +1,10 @@
 "use client";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, lazy } from "react";
 import { usePathname } from "next/navigation";
 import BaseUrl from "../services/BaseUrl";
-import CardItem from "../components/CardItem";
-import TableList from "../components/TableList";
+
+const CardItem = lazy(() => import("../components/CardItem"));
+const TableList = lazy(() => import("../components/TableList"));
 
 const page = () => {
   const [data, setData] = useState([]);
