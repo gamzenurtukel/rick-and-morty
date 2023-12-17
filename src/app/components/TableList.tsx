@@ -14,7 +14,7 @@ interface Props {
 
 const TableList: React.FC<Props> = ({ data }) => {
   return (
-    <div className="h-full bg-white  dark:bg-gray-900  flex p-10 ">
+    <div className="h-full bg-white  dark:bg-gray-900  flex pt-6 pl-10 pr-10">
       <div className="block rounded-lg border-neutral-100 bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-gray-800 w-full">
         <div className="border-b-2 border-neutral-100 px-6 py-5 text-xl font-medium leading-tight dark:border-gray-700 dark:text-neutral-50 flex justify-between text-gray-800">
           <span>Locations List</span>
