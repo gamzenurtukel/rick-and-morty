@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
-import Tabs from "./components/Tabs";
 import ProvidersTheme from "./ProvidersTheme";
 import { Providers } from "./redux/providers";
 import { Suspense } from "react";
@@ -29,7 +28,7 @@ export default function RootLayout({
               <div className="sticky top-0 bg-white z-50 mb-5">
                 <Header />
               </div>
-              <Tabs />
+
               <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
             </Providers>
           </div>
