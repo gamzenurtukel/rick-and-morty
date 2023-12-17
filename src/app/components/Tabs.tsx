@@ -25,25 +25,28 @@ const Tabs: React.FC = () => {
   ];
 
   return (
-    <div className="p-5 bg-white  dark:bg-gray-600 flex items-center justify-center gap-7">
+    <div className="p-5 bg-transparent flex items-center justify-start">
       <div className="flex items-center gap-7">
-        {tabs.map((tab) => (
-          <Link href={`/${tab?.url}`}>
-            <div
-              key={tab?.id}
-              onClick={() => {
-                toggle(tab.id);
-              }}
-              className={`${
-                activeTab === tab.id
-                  ? "bg-gray-700 text-white"
-                  : "bg-white dark:text-gray-700 "
-              } cursor-pointer rounded-lg p-3 text-xl font-bold `}
-            >
-              {tab?.title}
-            </div>
-          </Link>
-        ))}
+        <div className="text-md font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+          <ul className="flex flex-wrap -mb-px">
+            {tabs.map((tab, index) => (
+              <li className="me-2" key={index}>
+                <Link
+                  href={`/${tab?.url}`}
+                  className={`${
+                    activeTab === tab.id &&
+                    "inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500"
+                  } inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300`}
+                  onClick={() => {
+                    toggle(tab.id);
+                  }}
+                >
+                  {tab?.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
