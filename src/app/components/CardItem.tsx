@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addCharacterFavorite } from "../redux/features/characterFavoriteSlice";
 import Link from "next/link";
 import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
+import { useAppSelector } from "../redux/hook";
 
 interface Props {
   item: {
@@ -22,6 +23,11 @@ const CardItem: React.FC<Props> = ({ item }) => {
   const handleAddFavorite = (data: any) => {
     dispatch(addCharacterFavorite(data));
   };
+
+  const allFavorites = useAppSelector(
+    (state) => state.characterFavoriteReducer.characterFavorite
+  );
+
   return (
     <div
       key={item?.id}
@@ -59,14 +65,18 @@ const CardItem: React.FC<Props> = ({ item }) => {
         </p>
 
         <div className="flex items-center justify-between">
-          <button
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            onClick={() => {
-              handleAddFavorite(item);
-            }}
-          >
-            Add Favorite
-          </button>
+          {allFavorites?.find((favorite) => favorite?.id == item.id) ? (
+            <div></div>
+          ) : (
+            <button
+              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={() => {
+                handleAddFavorite(item);
+              }}
+            >
+              Add Favorite
+            </button>
+          )}
 
           <Link href={`/character/${item.id}`}>
             <button className="inline-flex items-center  hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
