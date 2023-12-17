@@ -5,7 +5,7 @@ import CharacterFavorite from "./CharacterFavorite";
 
 const Header: React.FC = () => {
   return (
-    <div className="flex items-center gap-7 h-30 p-5 dark:bg-gray-800  bg-white  shadow-lg shadow-gray-500/50 ">
+    <div className="flex items-center gap-7 h-30 p-5 dark:bg-gray-800  bg-white  shadow-lg shadow-gray-300/50  dark:shadow-gray-600/50 ">
       <div className="bg-gray-600 rounded-lg p-3 text-2xl font-bold text-white ">
         Rick And Morty
       </div>
