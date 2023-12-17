@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import characterFavoriteReducer from "./features/characterFavoriteSlice";
+import searchReducer from "./features/serachSlice";
 
 export const store = configureStore({
   reducer: {
     characterFavoriteReducer,
+    searchReducer,
   },
 });
 
