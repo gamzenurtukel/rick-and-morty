@@ -1,5 +1,6 @@
 import React from "react";
 import ThemeConfig from "./ThemeConfig";
+import CharacterFavorite from "./CharacterFavorite";
 // import { SearchIcon } from "@heroicons/react/outline";
 
 const Header: React.FC = () => {
@@ -17,6 +18,7 @@ const Header: React.FC = () => {
         {/* <SearchIcon className="w-6 h-6 text-purple-600 mr-1" /> */}
       </div>
       <ThemeConfig />
+      <CharacterFavorite />
     </div>
   );
 };
