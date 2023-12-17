@@ -31,9 +31,7 @@ const FilterStatus: React.FC<Props> = ({
   ];
 
   return (
-    <div>
-      {/* <span className="text-gray-700 dark:text-gray-400">Filter by status</span> */}
-
+    <div className="w-[20rem]">
       <Listbox value={selectedStatus} onChange={setSelectedStatus}>
         {({ open }) => (
           <>
