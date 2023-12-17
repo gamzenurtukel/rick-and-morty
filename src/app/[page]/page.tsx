@@ -12,6 +12,7 @@ const page = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [selectedStatus, setSelectedStatus] = useState(null);
 
   const searchValue = useAppSelector((state) => state.searchReducer.search);
 
@@ -34,26 +35,57 @@ const page = () => {
 
   const handlePage = (page: number) => {
     setCurrentPage(page);
-    if (searchValue) {
-      getRequestData(`${pathname}?name=${searchValue}&page=${page}`);
-    } else {
-      getRequestData(`${pathname}?page=${page}`);
+
+    let queryParams = `?page=${page}`;
+
+    if (selectedStatus) {
+      queryParams += `&status=${selectedStatus.name}`;
     }
+
+    if (searchValue) {
+      queryParams += `&name=${searchValue}`;
+    }
+
+    getRequestData(`${pathname}${queryParams}`);
   };
 
   useEffect(() => {
-    if (searchValue == "") {
-      getRequestData(pathname);
+    let queryParams = "";
+    if (searchValue === "") {
+      if (selectedStatus) {
+        queryParams += `&status=${selectedStatus.name}`;
+      }
     } else if (searchValue) {
-      getRequestData(`${pathname}?name=${searchValue}`);
+      queryParams += `?name=${searchValue}`;
+
+      if (selectedStatus) {
+        queryParams += `&status=${selectedStatus.name}`;
+      }
     }
-  }, [searchValue]);
+
+    getRequestData(`${pathname}${queryParams}`);
+  }, [searchValue, selectedStatus, pathname]);
+
+  useEffect(() => {
+    if (selectedStatus) {
+      let queryParams = `?status=${selectedStatus.name}`;
+
+      if (searchValue) {
+        queryParams += `&name=${searchValue}`;
+      }
+
+      getRequestData(`${pathname}${queryParams}`);
+    }
+  }, [selectedStatus, pathname, searchValue]);
 
   const pageRange = 5;
 
   return (
     <Fragment>
-      <Tabs />
+      <Tabs
+        setSelectedStatus={setSelectedStatus}
+        selectedStatus={selectedStatus}
+      />
       {pathname == "/character" && (
         <div className="flex flex-wrap gap-5 justify-center items-center dark:bg-gray-900 bg-white pt-7">
           {data.length > 0 &&
