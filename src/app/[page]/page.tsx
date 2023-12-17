@@ -1,7 +1,8 @@
 "use client";
-import React, { Fragment, useEffect, useState, lazy } from "react";
+import React, { Fragment, useEffect, useState, lazy, use } from "react";
 import { usePathname } from "next/navigation";
 import BaseUrl from "../services/BaseUrl";
+import { useAppSelector } from "../redux/hook";
 
 const CardItem = lazy(() => import("../components/CardItem"));
 const TableList = lazy(() => import("../components/TableList"));
@@ -10,6 +11,8 @@ const page = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  const searchValue = useAppSelector((state) => state.searchReducer.search);
 
   const pathname = usePathname();
 
@@ -30,8 +33,20 @@ const page = () => {
 
   const handlePage = (page: number) => {
     setCurrentPage(page);
-    getRequestData(`${pathname}?page=${page}`);
+    if (searchValue) {
+      getRequestData(`${pathname}?name=${searchValue}&page=${page}`);
+    } else {
+      getRequestData(`${pathname}?page=${page}`);
+    }
   };
+
+  useEffect(() => {
+    if (searchValue == "") {
+      getRequestData(pathname);
+    } else if (searchValue) {
+      getRequestData(`${pathname}?name=${searchValue}`);
+    }
+  }, [searchValue]);
 
   const pageRange = 5;
 
